@@ -5,18 +5,18 @@ function JobsController () {
         let template = `
         <form onsubmit="app.controllers.jobsController.makeJob(event)">
             <label for="company">Company</label>
-            <input type="text" name="company">
+            <input type="text" class="form-control" name="company">
             <label for="title">Title</label>
-            <input type="text" name="title">
+            <input type="text" class="form-control" name="title">
             <label for="hours">Hours</label>
-            <input type="number" name="hours">
+            <input type="number" class="form-control" name="hours">
             <label for="rate">Rate</label>
-            <input type="number" name="rate">
+            <input type="number" class="form-control" name="rate">
             <label for="description">Description</label>
-            <input type="text" name="description">
+            <input type="text" class="form-control" name="description">
             <button type="submit">Make Job</button>
         </form>
-        <div class="row" id="jobs">
+        <div class="row form-group" id="jobs">
         </div>
         `
         document.getElementById('maker').innerHTML = template

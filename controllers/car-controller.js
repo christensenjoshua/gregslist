@@ -5,17 +5,17 @@ function CarController() {
         let template = `
         <form onsubmit="app.controllers.carController.makeCar(event)">
             <label for="make">Make</label>
-            <input type="text" name="make">
+            <input type="text" class="form-control" name="make">
             <label for="model">Model</label>
-            <input type="text" name="model">
+            <input type="text" class="form-control" name="model">
             <label for="imgUrl">Image URL</label>
-            <input type="text" name="imgUrl">
+            <input type="text" class="form-control" name="imgUrl">
             <label for="year">Year</label>
-            <input type="number" name="year">
+            <input type="number" class="form-control" name="year">
             <label for="price">Price</label>
-            <input type="number" name="price">
+            <input type="number" class="form-control" name="price">
             <label for="description">Description</label>
-            <input type="text" name="description">
+            <input type="text" class="form-control" name="description">
             <button type="submit">Make Car</button>
         </form>
         <div class="row" id="cars">
