@@ -24,16 +24,15 @@ function JobsController () {
     }
     function draw(){
         let jobs = jobsService.getJobs()
-        console.log(jobs)
         let template = ''
         for (let i = 0; i < jobs.length; i++) {
             const job = jobs[i]
             template += `
-            <div class="col-3">
-            <p>${job.company}</p>
-            <p>${job.title}</p>
-            <p>${job.hours}</p>
-            <p>${job.rate}</p>
+            <div class="col-lg-3 col-sm-12 col-md-6 listing">
+            <p>Company: ${job.company}</p>
+            <p>Title: ${job.title}</p>
+            <p>Contract Hours: ${job.hours}</p>
+            <p>Hourly Rate: ${job.rate}</p>
             <p>${job.description}</p>
             </div>
             `
@@ -44,6 +43,11 @@ function JobsController () {
         e.preventDefault()
         let formData = e.target
         jobsService.makeJob(formData)
+        formData.company.value = ''
+        formData.title.value = ''
+        formData.hours.value = ''
+        formData.rate.value = ''
+        formData.description.value = ''
         draw()
     }
 }

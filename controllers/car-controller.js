@@ -30,12 +30,12 @@ function CarController() {
         for (let i = 0; i < cars.length; i++) {
             const car = cars[i]
             template += `
-            <div class="col-3">
-            <p>${car.make}</p>
-            <p>${car.model}</p>
-            <p>${car.year}</p>
+            <div class="col-lg-3 col-sm-12 col-md-6 listing">
             <img src="${car.imgUrl}">
-            <p>${car.price}</p>
+            <p>Make: ${car.make}</p>
+            <p>Model: ${car.model}</p>
+            <p>Year: ${car.year}</p>
+            <p>Price: $${car.price}</p>
             <p>${car.description}</p>
             </div>
             `
