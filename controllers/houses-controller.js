@@ -18,15 +18,16 @@ function HousesController() {
             <input type="number" class="form-control" name="price">
             <label for="description">Description</label>
             <input type="text" class="form-control" name="description">
-            <button type="submit">Make House</button>
+            <button class="btn btn-primary form-button" type="submit">Make House</button>
         </form>
-        <div class="row form-group" id="houses">
+        <hr />
+        <div class="row" id="houses">
         </div>
         `
         document.getElementById('maker').innerHTML = template
         draw()
     }
-    function draw(){
+    function draw() {
         let houses = housesService.getHouses()
         let template = ''
         for (let i = 0; i < houses.length; i++) {
@@ -45,7 +46,7 @@ function HousesController() {
         }
         document.getElementById('houses').innerHTML = template
     }
-    this.makeHouse = function (e){
+    this.makeHouse = function (e) {
         e.preventDefault()
         let formData = e.target
         housesService.makeHouse(formData)

@@ -16,8 +16,9 @@ function CarController() {
             <input type="number" class="form-control" name="price">
             <label for="description">Description</label>
             <input type="text" class="form-control" name="description">
-            <button type="submit">Make Car</button>
+            <button class="btn btn-primary form-button" type="submit">Make Car</button>
         </form>
+        <hr />
         <div class="row" id="cars">
         </div>
         `

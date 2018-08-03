@@ -1,4 +1,4 @@
-function JobsController () {
+function JobsController() {
     let jobsService = new JobsService()
 
     this.setup = function () {
@@ -14,15 +14,16 @@ function JobsController () {
             <input type="number" class="form-control" name="rate">
             <label for="description">Description</label>
             <input type="text" class="form-control" name="description">
-            <button type="submit">Make Job</button>
+            <button class="btn btn-primary form-button" type="submit">Make Job</button>
         </form>
-        <div class="row form-group" id="jobs">
+        <hr />
+        <div class="row" id="jobs">
         </div>
         `
         document.getElementById('maker').innerHTML = template
         draw()
     }
-    function draw(){
+    function draw() {
         let jobs = jobsService.getJobs()
         let template = ''
         for (let i = 0; i < jobs.length; i++) {
@@ -39,7 +40,7 @@ function JobsController () {
         }
         document.getElementById('jobs').innerHTML = template
     }
-    this.makeJob = function(e){
+    this.makeJob = function (e) {
         e.preventDefault()
         let formData = e.target
         jobsService.makeJob(formData)
