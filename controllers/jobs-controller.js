@@ -21,10 +21,10 @@ function JobsController() {
         </div>
         `
         document.getElementById('maker').innerHTML = template
-        draw()
+        this.getJobs()
     }
     function draw() {
-        let jobs = jobsService.getJobs()
+        let jobs = jobsService.accessJobs()
         let template = ''
         for (let i = 0; i < jobs.length; i++) {
             const job = jobs[i]
@@ -50,5 +50,8 @@ function JobsController() {
         formData.rate.value = ''
         formData.description.value = ''
         draw()
+    }
+    this.getJobs = function(){
+        jobsService.getJobs(draw)
     }
 }
