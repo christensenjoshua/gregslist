@@ -23,16 +23,16 @@ function CarController() {
         </div>
         `
         document.getElementById('maker').innerHTML = template
-        draw()
+        this.getCars()
     }
     function draw() {
-        let cars = carService.getCars()
+        let cars = carService.accessCars()
         let template = ''
         for (let i = 0; i < cars.length; i++) {
             const car = cars[i]
             template += `
             <div class="col-lg-3 col-sm-12 col-md-6 listing">
-            <img src="${car.imgUrl}">
+            <img src="${car.imgUrl}" width ="200px">
             <p>Make: ${car.make}</p>
             <p>Model: ${car.model}</p>
             <p>Year: ${car.year}</p>
@@ -42,6 +42,9 @@ function CarController() {
             `
         }
         document.getElementById('cars').innerHTML = template
+    }
+    this.getCars = function(){
+        carService.getCars(draw)
     }
     this.makeCar = function (e) {
         e.preventDefault()
