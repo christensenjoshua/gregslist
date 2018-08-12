@@ -25,16 +25,16 @@ function HousesController() {
         </div>
         `
         document.getElementById('maker').innerHTML = template
-        draw()
+        this.getHouses()
     }
     function draw() {
-        let houses = housesService.getHouses()
+        let houses = housesService.accessHouses()
         let template = ''
         for (let i = 0; i < houses.length; i++) {
             const house = houses[i]
             template += `
             <div class="col-lg-3 col-sm-12 col-md-6 listing">
-            <img src="${house.imgUrl}">
+            <img src="${house.imgUrl}" width="200px">
             <p>Bedrooms: ${house.bedrooms}</p>
             <p>Bathrooms: ${house.bathrooms}</p>
             <p>Levels: ${house.levels}</p>
@@ -58,5 +58,8 @@ function HousesController() {
         formData.description.value = ''
         formData.imgUrl.value = ''
         draw()
+    }
+    this.getHouses = function() {
+        housesService.getHouses(draw)
     }
 }
