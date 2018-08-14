@@ -27,6 +27,36 @@ function HousesController() {
         document.getElementById('maker').innerHTML = template
         this.getHouses()
     }
+    this.drawEditForm = function(id){
+        let house = housesService.getHouse(id)
+        let template = `
+        <form onsubmit="app.controllers.housesController.editHouse(event)">
+            <label for="bedrooms">Bedrooms</label>
+            <input type="number" class="form-control" name="bedrooms" value="${house.bedrooms}" required>
+            <label for="bathrooms">Bathrooms</label>
+            <input type="number" class="form-control" name="bathrooms" value="${house.bathrooms}" required>
+            <label for="imgUrl">Image URL</label>
+            <input type="text" class="form-control" name="imgUrl" value="${house.imgUrl}" required>
+            <label for="levels">Levels</label>
+            <input type="number" class="form-control" name="levels" value="${house.levels}" required>
+            <label for="year">Year</label>
+            <input type="number" class="form-control" name="year" value="${house.year}" required>
+            <label for="price">Price</label>
+            <input type="number" class="form-control" name="price" value="${house.price}" required>
+            <label for="description">Description</label>
+            <input type="text" class="form-control" name="description" value="${house.description}">
+            <input type="text" class="form-control" name="id" value="${house._id}" hidden>
+            <button class="btn btn-primary form-button" type="submit">Edit House</button>
+        </form>
+        `
+        document.getElementById('edit').innerHTML = template
+    }
+    this.editHouse = function(e){
+        e.preventDefault()
+        let formData = e.target
+        housesService.editHouse(formData, draw)
+        
+    }
     function draw() {
         let houses = housesService.accessHouses()
         let template = ''
@@ -41,6 +71,7 @@ function HousesController() {
             <p>Year: ${house.year}</p>
             <p>Price: $${house.price}</p>
             <p>${house.description}</p>
+            <button class="btn btn-secondary" onclick="app.controllers.housesController.drawEditForm('${house._id}')">Edit</button>
             </div>
             `
         }

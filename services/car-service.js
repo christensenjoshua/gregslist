@@ -44,7 +44,6 @@ function CarService() {
     }
     this.editCar = function(data, callback){
         let editedCar = new Car(data.make.value, data.model.value, data.imgUrl.value, data.year.value, data.price.value, data.description.value, data.id.value)
-        console.log(editedCar)
         $.ajax({
             url: 'https://bcw-gregslist.herokuapp.com/api/cars/' + editedCar._id,
             method: 'PUT',
