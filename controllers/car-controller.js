@@ -89,4 +89,7 @@ function CarController() {
         carService.editCar(formData, draw)
         document.getElementById('edit').innerHTML = ''
     }
+    this.deleteCar = function(id){
+        carService.deleteCar(id, draw)
+    }
 }

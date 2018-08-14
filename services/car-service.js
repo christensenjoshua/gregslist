@@ -17,6 +17,8 @@ function CarService() {
         let item = new Car(data.make.value, data.model.value, data.imgUrl.value, data.year.value, data.price.value, data.description.value,'')
         $.post('https://bcw-gregslist.herokuapp.com/api/cars',item).then(res =>{
             callback()
+        }).catch(err =>{
+            console.error(err.responseJSON.message)
         })
     }
     this.accessCars = function(){
@@ -50,6 +52,16 @@ function CarService() {
             this.getCars(callback)
             console.log(res)
         }).catch(err => {
+            console.error(err.responseJSON.message)
+        })
+    }
+    this.deleteCar = function(id, callback){
+        $.ajax({
+            url: 'https://bcw-gregslist.herokuapp.com/api/cars/' + id,
+            method: 'DELETE'
+        }).then(res =>{
+            this.getCars(callback)
+        }).catch(err =>{
             console.error(err.responseJSON.message)
         })
     }
