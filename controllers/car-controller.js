@@ -5,15 +5,15 @@ function CarController() {
         let template = `
         <form onsubmit="app.controllers.carController.makeCar(event)">
             <label for="make">Make</label>
-            <input type="text" class="form-control" name="make">
+            <input type="text" class="form-control" name="make" required>
             <label for="model">Model</label>
-            <input type="text" class="form-control" name="model">
+            <input type="text" class="form-control" name="model" required>
             <label for="imgUrl">Image URL</label>
-            <input type="text" class="form-control" name="imgUrl">
+            <input type="text" class="form-control" name="imgUrl" required>
             <label for="year">Year</label>
-            <input type="number" class="form-control" name="year">
+            <input type="number" class="form-control" name="year" required>
             <label for="price">Price</label>
-            <input type="number" class="form-control" name="price">
+            <input type="number" class="form-control" name="price" required>
             <label for="description">Description</label>
             <input type="text" class="form-control" name="description">
             <button class="btn btn-primary form-button" type="submit">Make Car</button>
@@ -38,6 +38,9 @@ function CarController() {
             <p>Year: ${car.year}</p>
             <p>Price: $${car.price}</p>
             <p>${car.description}</p>
+            <hr />
+            <button class="btn btn-secondary" onclick="app.controllers.carController.drawEditForm('${car._id}')">Edit</button>
+            <button class="btn btn-danger" onclick="app.controllers.carController.deleteCar('${car._id}')">Delete</button>
             </div>
             `
         }
@@ -45,6 +48,28 @@ function CarController() {
     }
     this.getCars = function(){
         carService.getCars(draw)
+    }
+    this.drawEditForm = function(id){
+        let car = carService.getCar(id)
+        let template = `
+        <form onsubmit="app.controllers.carController.editCar(event)">
+            <label for="make">Make</label>
+            <input type="text" class="form-control" name="make" value="${car.make}" required>
+            <label for="model">Model</label>
+            <input type="text" class="form-control" name="model" value="${car.model}" required>
+            <label for="imgUrl">Image URL</label>
+            <input type="text" class="form-control" name="imgUrl" value="${car.imgUrl}" required>
+            <label for="year">Year</label>
+            <input type="number" class="form-control" name="year" value="${car.year}" required>
+            <label for="price">Price</label>
+            <input type="number" class="form-control" name="price" value="${car.price}" required>
+            <label for="description">Description</label>
+            <input type="text" class="form-control" name="description" value="${car.description}">
+            <input type="text" class="form-control" name="id" value="${car._id}" hidden>
+            <button class="btn btn-primary form-button" type="submit">Edit Car</button>
+        </form>
+        `
+        document.getElementById('edit').innerHTML = template
     }
     this.makeCar = function (e) {
         e.preventDefault()
@@ -56,6 +81,12 @@ function CarController() {
         formData.price.value = ''
         formData.year.value = ''
         formData.description.value = ''
-        draw()
+        carService.getCars(draw)
+    }
+    this.editCar = function(e){
+        e.preventDefault()
+        let formData = e.target
+        carService.editCar(formData, draw)
+        document.getElementById('edit').innerHTML = ''
     }
 }
