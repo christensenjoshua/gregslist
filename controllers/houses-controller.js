@@ -5,17 +5,17 @@ function HousesController() {
         let template = `
         <form onsubmit="app.controllers.housesController.makeHouse(event)">
             <label for="bedrooms">Bedrooms</label>
-            <input type="number" class="form-control" name="bedrooms">
+            <input type="number" class="form-control" name="bedrooms" required>
             <label for="bathrooms">Bathrooms</label>
-            <input type="number" class="form-control" name="bathrooms">
+            <input type="number" class="form-control" name="bathrooms" required>
             <label for="imgUrl">Image URL</label>
-            <input type="text" class="form-control" name="imgUrl">
+            <input type="text" class="form-control" name="imgUrl" required>
             <label for="levels">Levels</label>
-            <input type="number" class="form-control" name="levels">
+            <input type="number" class="form-control" name="levels" required>
             <label for="year">Year</label>
-            <input type="number" class="form-control" name="year">
+            <input type="number" class="form-control" name="year" required>
             <label for="price">Price</label>
-            <input type="number" class="form-control" name="price">
+            <input type="number" class="form-control" name="price" required>
             <label for="description">Description</label>
             <input type="text" class="form-control" name="description">
             <button class="btn btn-primary form-button" type="submit">Make House</button>
@@ -49,7 +49,7 @@ function HousesController() {
     this.makeHouse = function (e) {
         e.preventDefault()
         let formData = e.target
-        housesService.makeHouse(formData)
+        housesService.makeHouse(formData, draw)
         formData.bedrooms.value = ''
         formData.bathrooms.value = ''
         formData.levels.value = ''
@@ -57,7 +57,6 @@ function HousesController() {
         formData.price.value = ''
         formData.description.value = ''
         formData.imgUrl.value = ''
-        draw()
     }
     this.getHouses = function() {
         housesService.getHouses(draw)

@@ -74,14 +74,13 @@ function CarController() {
     this.makeCar = function (e) {
         e.preventDefault()
         let formData = e.target
-        carService.makeCar(formData)
+        carService.makeCar(formData, draw)
         formData.make.value = ''
         formData.model.value = ''
         formData.imgUrl.value = ''
         formData.price.value = ''
         formData.year.value = ''
         formData.description.value = ''
-        carService.getCars(draw)
     }
     this.editCar = function(e){
         e.preventDefault()

@@ -11,8 +11,13 @@ function HousesService() {
             this.price = price,
             this.description = description
     }
-    this.makeHouse = function (data) {
-        houses.push(new House(data.bedrooms.value, data.bathrooms.value, data.imgUrl.value, data.levels.value, data.year.value, data.price.value, data.description.value))
+    this.makeHouse = function (data, callback) {
+        let item = (new House(data.bedrooms.value, data.bathrooms.value, data.imgUrl.value, data.levels.value, data.year.value, data.price.value, data.description.value))
+        $.post('https://bcw-gregslist.herokuapp.com/api/houses',item).then(res =>{
+            this.getHouses(callback)
+        }).catch(err =>{
+            console.error(err.responseJSON.message)
+        })
     }
     this.accessHouses = function() {
         return houses

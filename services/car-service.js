@@ -15,8 +15,9 @@ function CarService() {
 
     this.makeCar = function (data, callback) {
         let item = new Car(data.make.value, data.model.value, data.imgUrl.value, data.year.value, data.price.value, data.description.value,'')
+        delete item._id
         $.post('https://bcw-gregslist.herokuapp.com/api/cars',item).then(res =>{
-            callback()
+            this.getCars(callback)
         }).catch(err =>{
             console.error(err.responseJSON.message)
         })
